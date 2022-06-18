@@ -1,0 +1,20 @@
+{% load static %}
+
+
+{#DASHBOARD#}
+<li class="nav-item">
+    <a class="nav-link dropdown-toggle arrow-none" href="#">
+        <i class="bx bx-home-circle mr-2"></i>Dashboard
+    </a>
+</li>
+
+{# ROOT ADMIN #}
+{% if request.user.is_superuser %}
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/">
+            <i class="bx bx-sitemap mr-2"></i>Root
+        </a>
+    </li>
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}

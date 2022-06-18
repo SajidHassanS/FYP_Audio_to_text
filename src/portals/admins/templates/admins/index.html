@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <!-- BOOTSTRAP CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="static/style/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+
+<!-- NAVBAR START -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold px-4" href="#"> <img src="static/images/logo.jpg" width="50px" height="50px"
+                                                            alt="">TRANSCRIBER</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Transcription</a>
+                            <p class="px-2" style="font-size: 12px;">Convert your audio to Text</p>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Subtitle</a>
+                            <p class="px-2" style="font-size: 12px;">Add Caption to Videos</p>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Enterprise</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Pricing</a>
+                </li>
+
+                <li class="nav-item">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" id="signUp"
+                            data-bs-target="#exampleModal">
+                        Sign-up
+                    </button>
+                </li>
+
+                <li class="nav-item">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" id="signUp"
+                            data-bs-target="#exampleModal">
+                        Get Started Free
+                    </button>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<!-- NAVBAR END -->
+
+
+<!-- MAIN-SECTION START -->
+
+<div class="main-section">
+
+    <p class="heading">Audio to Text Converter</p>
+
+    <p class="text-1">Transcribe audio to text with our audio to text converter. <br> English and Urdu languages with
+        all features supported</p>
+
+    <button class="big-btn">Convert audio to text</button>
+
+    <div class="main-Container">
+
+        <div id="Container">
+
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" id="file" class="File" name="file">
+
+                <br>
+
+                <input type="submit" class="btn btn-primary" id="txt" value="Transcribe"/>
+
+                <select class="selectLanguage">
+                    <option value="">Select Language</option>
+                    <option value="">English</option>
+                    <option value="">Urdu</option>
+                </select>
+
+            </form>
+            {% if transcript !="" %}
+                <div id="speechTranscriptContainer">
+                    <h1>Transcript</h1>
+                    <p></p>
+                </div>
+
+
+
+            {% endif %}
+
+
+
+
+
+
+
+            <div class="form-group purple-border" style="width:500px;align:center">
+                <textarea class="form-control" id="textareainput" rows="10" cols="20"> {{ transcript }}</textarea>
+            </div>
+            <div style=" display:inline;">
+                <button class="btn btn-primary" id="copyID" style="margin-left: 280px;
+    margin: 12px 0">
+                    <i class="fa fa-copy"></i>
+                </button>
+
+                <button class="btn btn-primary " id="downloadbutton" style="margin-left: 280px;
+    margin: 12px 0px; ">
+                    <i class="fa fa-download"></i>
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <p class="head-2">
+        Transcribe Audio to Text with <br> Happy Scribe
+    </p>
+
+
+    <p class="head2-text">
+        Audio transcription is the Process of Converting an audio file into a text file. Taht may be any audio <br>
+        recording, such as an interview, academic study, a music video clip, or a conference recording.There are <br>
+        plenty of scanarios where
+        having a text file is more convinient than an audio recording. Transcription is <br> useful for Podcasts,
+        research, subtitling, transcribing phone calls, dictatio,etc... <br><br> These are the 3 main ways of
+        transcribing audio text with Happy
+        Scribe. <br> <br> * Transcribe the audio manually with our transcription Editor (FREE). <br> * Use our Automatic
+        Transcription Software. <br> * Book our Human Transcription Services
+    </p>
+
+
+    <p class="headtext-2">
+        Manually transcribe your audio files
+    </p>
+
+    <p class="headtext-para">
+        if you don't mind speeding some more time transcribing your files, what you can do is use our online <br>
+        transcription software. This free interactive editor enables you to listen to the audio file while transcribing
+        <br> it, allowing you
+        to reply the audio as many times as you need. You can use our free transcription editor <br> both from your
+        dashboard or directly in the editor page.
+    </p>
+
+    <p class="auto-para">
+        The First way you can convert an audio file into a readable file is by using an Automatic Transcription
+        Software. <br> <br> There are many advantages of transcribing audio to text file. Our audio to text software
+        <br> can transcribe audio
+        into two languages. <br> <br> There are many advantages of transcribing audio text automaticalyy, but the main
+        one is the time that you save. <br> From now you can just forget about the manually transcribing your audio and
+        start enjoying your
+        free time!
+    </p>
+
+
+    <!-- LANGUAGES -->
+
+    <h2 class="lang">Select Your Language</h2>
+
+    <select id="select">
+        <option value="" class="Option">Select Language</option>
+        <option value="" class="Option">English</option>
+        <option value="" class="Option">Urdu</option>
+    </select>
+
+
+    <p class="head-human">
+        Human Transcription Services
+    </p>
+
+    <p class="human-para">
+        Another option when converting audio to text is to hire a freelancer transcriber or employ transcriber <br>
+        services like us(HappyScriber). We work with the best transcriber in the wold to provide you the top notch <br>
+        transcripts. Our human
+        transcription service is available in English & Urdu.
+    </p>
+
+    <p class="how-head">
+        How to Transcribe Audio to Text
+    </p>
+
+    <p class="how-para">
+        if you'd rather not transcribe your audio, simply submit your file or URL to Happy Scribe, and we'll do it for
+        <br> you quickly and accuratly. The basic steps for using Happy Scribe's transcription Serive are as follows.
+        <br> <br>
+    </p>
+
+
+    <p class="sign-head">
+        Sign Up and Choose Between Transcribing and <br> Subtitling Your File.
+    </p>
+
+    <p class="sign-text">
+        We won't ask you for credit card and you'll be able to upload your file right away
+    </p>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Sign-up
+    </button>
+
+    <hr>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <img src="assets/images/logo.jpg" width="40px" height="40px" alt=""> <span>HappyScribe</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="Form">
+                        <button class="signup-btn">Sign up with Google</button>
+                        <div>Or with your Email</div>
+
+                        <input type="text" placeholder="First Name" class="Input" required>
+                        <input type="text" placeholder="Last Name" class="Input" required>
+                        <input type="email" placeholder="Email" class="Input" required>
+                        <input type="password" placeholder="Password" class="Input" required>
+
+                        <input type="checkbox" class="check" required> <span class="span">I agree to the terms of service and privary policy</span>
+
+                        <div class="btns">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="Submit">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ACCORDIAN -->
+
+    <p class="ask">Frequently Asked Questions</p>
+
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item" id="item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    What are the Advantages of Converting audio to text?
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    There are numerous advantages to transcribe audio to text. when you transcribe audio, you make your
+                    <br> content more accessible for the Deaf, hard of hearing, and non-native language speakers.
+                    Transcribing audio to text can improve
+                    SEO because Google can't index audio.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item" id="item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    What are the main ways to convert audio to text?
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    We use automatic transcription software, or Human transcription services. HappyScribe Offers both
+                    <br> two Options. Manually converting the file to text is the free method, but also exteremly
+                    time-consuming.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item" id="item">
+            <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    How long does it take to transcribe audio into text?
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    The amount of time it will take to transcribe your file depends on the length of your audio file,
+                    the quality of <br> the audio, and wether or not you transcribe the audio by yourself or use a
+                    software that transcribe for you.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- MAIN-SECTION END -->
+
+
+<!-- FOOTER -->
+<footer id="Foot">
+
+    <div class="social">
+
+        <p class="follow">Follow us on</p>
+
+        <i class="bi bi-facebook"></i>
+        <i class="bi bi-instagram"></i>
+        <i class="bi bi-twitter"></i>
+
+    </div>
+
+    <div class="private">
+        <p>Transcribe Ltd.</p> |
+        <p>Terms of Services</p> |
+        <p>Privacy Policy</p> |
+        <p>Security</p> |
+        <p>All right reserved</p>
+    </div>
+
+</footer>
+
+
+</body>
+<!-- BOOTSTRAP JS BUNDLE -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script>
+
+    var button = document.getElementById("copyID"),
+        input = document.getElementById("textareainput");
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+        input.select();
+        document.execCommand("copy");
+    });
+    // Start file download.
+    document.getElementById("downloadbutton").addEventListener("click", function () {
+        // Generate download of hello.txt
+        // file with some content
+        var text = document.getElementById("textareainput").value;
+        var filename = "TextareaInput.txt";
+        download(filename, text);
+    }, false);
+
+    function download(file, text) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8, ' + encodeURIComponent(text));
+        element.setAttribute('download', file);
+        document.body.appendChild(element);
+        //onClick property
+        element.click();
+        document.body.removeChild(element);
+    }
+</script>
+
+</html>

@@ -1,0 +1,762 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block base_title %} {{ request.user }} {% endblock %}
+
+{% block base_links %}
+
+
+{% endblock %}
+
+{% block content %}
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcriber</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css"
+          integrity="sha512-xX2rYBFJSj86W54Fyv1de80DWBq7zYLn2z0I9bIhQG+rxIF6XVJUpdGnsNHWRa6AvP89vtFupEPDP8eZAtu9qA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- CSS -->
+    <style>
+    /*home css*/
+    body {
+        /*background-image:url("../static/core/images/background.jpg");*/
+         background: url("/static/core/images/bg123.png") ;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+    }
+
+    /*.container-fluid {*/
+    /*    border: 1px solid gray;*/
+    /*    !* height: 140vh; *!*/
+    /*    background-color: rgba(0, 0, 0, 0.5);*/
+    /*    color: #fff;*/
+
+    /*}*/
+
+    /*.audio_play {
+        width: 30vw !important;
+        margin-left: 25em;
+    }*/
+
+    p {
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .container-fluid>h4 {
+        margin-bottom: 20px;
+    }
+
+    .container-fluid>.input {
+        margin: 20px 10px;
+    }
+
+    .audio_play {
+        margin-top: 0px;
+    }
+
+    .container-fluid>div>button {
+        margin: 20px 0;
+    }
+
+    .btn-secondary>i {
+        font-size: 20px;
+    }
+
+    /*recorder css*/
+
+    a {
+        color: #337ab7;
+    }
+
+    p {
+        margin-top: 1rem;
+    }
+
+    a:hover {
+        color: #23527c;
+    }
+
+    a:visited {
+        color: #8d75a3;
+    }
+
+
+
+    h1 {
+        text-decoration: underline red;
+        text-decoration-thickness: 3px;
+        text-underline-offset: 6px;
+        font-size: 220%;
+        font-weight: bold;
+    }
+
+    h2 {
+        font-weight: bold;
+        color: #005A9C;
+        font-size: 140%;
+        text-transform: uppercase;
+    }
+
+    red {
+        color: red;
+    }
+
+    /*#controls {*/
+    /*    display: flex;*/
+    /*    margin-top: 2rem;*/
+    /*    max-width: 28em;*/
+    /*    margin-right: 135em;*/
+    /*    */
+    /*}*/
+
+    mybtnn {
+        flex-grow: 1;
+        height: 2rem;
+        min-width: 4rem;
+        border: none;
+        border-radius: 0.15rem;
+        background: #f1b0b7;
+        margin-left: 18px;
+        box-shadow: inset 0 -0.15rem 0 rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: greenyellow;
+        font-weight: bold;
+        font-size: 1rem;
+        margin-top: -26px;
+    }
+
+    button:hover,
+    button:focus {
+        outline: none;
+        background: #c72d1c;
+    }
+
+    button::-moz-focus-inner {
+        border: 0;
+    }
+
+    button:active {
+        box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2);
+        line-height: 3rem;
+    }
+
+    button:disabled {
+        pointer-events: none;
+        background: lightgray;
+    }
+
+    button:first-child {
+        margin-left: 0;
+    }
+
+    audio {
+        display: block;
+        width: 90%;
+        height: 40px;
+        margin-top: 10px;
+    }
+
+    li {
+        list-style: none;
+        margin-bottom: 1rem;
+    }
+
+    #formats {
+        margin-top: 0.5rem;
+        font-size: 80%;
+    }
+
+
+    #recordingsList {
+        max-width: 28em;
+    }
+
+
+    /*my css*/
+
+    .card-title {
+        color: black;
+        font-family: "Times New Roman";
+        font-weight: bold;
+        font-size: 26px;
+    }
+
+    .card-body {
+        margin-top: -15px;
+        padding-bottom: 4px;
+    }
+
+    .textBox {
+        text-align: center;
+        justify-content: center;
+
+    }
+
+
+    /*work for button*/
+
+    .button {
+        pointer-events: auto;
+        cursor: pointer;
+        background: #e7e7e7;
+        border: none;
+        padding: 1.5rem 3rem;
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        justify-content: center;
+        color: white;
+    }
+
+    .button::before,
+    .button::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .button--pan {
+        font-family: aktiv-grotesk-extended, sans-serif;
+        font-weight: 700;
+        border: 0px solid #000;
+        border-radius: 3rem;
+        overflow: hidden;
+        color: #fff;
+        padding: 10px;
+    }
+
+    .btnspan {
+        position: relative;
+        mix-blend-mode: difference;
+        border-radius: 3rem !important;
+    }
+
+    .button--pan::before {
+        content: '';
+        background: #000;
+        transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+    }
+
+    .button--pan:hover::before {
+        transform: translate3d(0, -100%, 0);
+    }
+
+
+    }
+
+    .wrapper {
+        position: relative;
+    }
+
+    input {
+        padding-left: 0px;
+    }
+
+    .wrapper span {
+        position: absolute;
+        left: 2px;
+    }
+
+    .heading {
+        font-size: 28px;
+        color: black;
+    }
+
+    .card1 {
+        background-color: #DCDCDC;
+        margin-left: 20px;
+    }
+
+    i {
+        color: black;
+        padding: 2px;
+    }
+
+    .btnbutn {
+        margin-right: -47px;
+        margin-top: 2px;
+        height: 60px;
+        margin-left: 40px;
+        color: #DCDCDC;
+
+    }
+
+    .btnbutn2 {
+        margin-right: -47px;
+        margin-top: 2px;
+        height: 60px;
+        margin-left: -40px;
+        border: 2px solid;
+    }
+
+    .form-check .form-check-input {
+
+        margin-left: 2.5em;
+        align-items: center ;
+    }
+
+    .selectL{
+
+    }
+
+    .cardRec{
+       margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+        margin-top: -35px;
+
+    }
+
+
+
+
+
+
+    </style>
+
+
+    <!-- CSS end -->
+</head>
+
+<body>
+
+<div class="container-fluid  text-center pt-5">
+
+
+
+
+<div class="card mb-3 cardRec card1" style="max-width: 600px;">
+  <div class="row g-0">
+    <div class="col-md-3">
+
+       <i class="fa fa-microphone fa-5x pt-3 pl-4" style="font-size:140px;color:darkcyan;" aria-hidden="true"></i>
+
+
+    </div>
+    <div class="col-md-9">
+      <div class="card-body">
+          <h5 class="card-title  ">Record Audio</h5>
+            <div class=" " id="controls">
+
+<div class="button button--pan wrapper">
+
+                    <button class="btn btnspan btn btn-info  m-0" id="startRecordingButton">Start</button>
+                </div>
+
+                <div class="button button--pan wrapper">
+
+                   <button class="btn btnspan btn btn-info  m-0" id="stopRecordingButton">Stop</button>
+                </div>
+
+                <div class="button button--pan wrapper">
+
+                  <button class="btn btnspan btn btn-info  m-0" id="playButton">Play</button>
+                </div>
+
+                <div class="button button--pan wrapper">
+
+                    <button class="btn btnspan btn btn-info  m-0" id="downloadButton" style="width:200px;">Download</button>
+                </div>
+
+
+
+
+            </div>
+    </div>
+  </div>
+      </div>
+</div>
+
+<!--
+<div class="button button--pan wrapper">
+
+                    <button class="btn btnspan btn btn-info  m-2" id="copyID">
+                        <i class="fa fa-copy"></i>
+                    </button>
+                </div>-->
+
+
+
+
+    <form enctype="multipart/form-data" method="post">
+
+
+ <div class="p-0 m-0">
+ <h3 class=" card-title  " style="color: honeydew; display: inline-block; white-space: nowrap;">Select Your Language</h3>
+
+        <section class="container-fluid" style="width:150px; margin-left: 45%; color: white;">
+                    <div>
+
+                    <input type="radio" class="form-check-input " name="flexRadioDefault" value="english" id="english" checked>
+                    <label class="form-check-label" for="english">English</label>
+                </div>
+                <div>
+                    <input type="radio" class="form-check-input " name="flexRadioDefault" value="urdu"
+                           id="urdu">
+                    <label class="form-check-label" for="urdu">Urdu</label>
+                </div>
+            </div>
+        </section>
+
+        <!-- new code end -->
+
+        <div class="container px-4">
+            <div class="row gx-2">
+                <div class="col-6">
+                    <div class="p-3  ">
+                        <div class="card mb-3 card1" style="max-width: 440px;">
+                            <div class="row g-0">
+                                <div class="col-md-3">
+ <i class="fa fa-file-audio-o fa-5x" style="font-size:100px;color:darkcyan;"></i>
+
+
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Upload File</h5>
+                                        <h3 style="color: red"> {{ error }}</h3>
+
+                                        <div class="input">
+                                            <input class="File" id="input" id="file" name="file" type="file">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                  <div class="col-6">
+                    <div class="p-3  ">
+                        <div class="card mb-3 card1" style="width: 440px;">
+                            <div class="row g-0">
+                                <div class="col-md-3">
+
+<!--<i class="fa fa-microphone fa-5x pt-3 pl-4" style="font-size:140px;color:darkcyan;" aria-hidden="true"></i>-->
+                                    <i class="fa fa-play-circle fa-5x" style="font-size:100px;color:darkcyan;"></i>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Play Upload Audio</h5>
+                                        <audio id="sound" controls></audio>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <div class="button button--pan wrapper p-2">
+            <input class="btnspan btn btn-info" id="txt" type="submit" value="Transcriber">
+
+        </div>
+
+    </form>
+    <div class="container ">
+        <div class="row">
+            <div class="col">
+
+                <textarea id="textareainput" cols="70" rows="7">{{ data }}</textarea>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col p-2">
+                <div class="button button--pan wrapper">
+
+                    <button class="btn btnspan btn btn-info  m-2" id="copyID">
+                        <i class="fa fa-copy"></i>
+                    </button>
+                </div>
+                <div class="button button--pan wrapper">
+                    <button class="btnspan btn btn-info btn-md m-2" id="downloadbutton1">
+                        <i class="fa fa-download"></i>
+                    </button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous">
+
+</script>
+<script>
+
+        input.onchange = function (e) {
+            var sound = document.getElementById('sound');
+            sound.src = URL.createObjectURL(this.files[0]);
+            // not really needed in this exact case, but since it is really important in other cases,
+            // don't forget to revoke the blobURI when you don't need it
+            sound.onend = function (e) {
+                URL.revokeObjectURL(this.src);
+            }
+        }
+
+
+
+
+
+
+</script>
+
+
+
+<script>
+const button1 = document.getElementById("copyID"),
+    input = document.getElementById("textareainput");
+button1.addEventListener("click", function (event) {
+    event.preventDefault();
+    input.select();
+    document.execCommand("copy");
+});
+// Start file download.
+document.getElementById("downloadbutton1").addEventListener("click", function () {
+    // Generate download of hello.txt
+    // file with some content
+    const text = document.getElementById("textareainput").value;
+
+    const filename = "TextareaInput.txt";
+    download(filename, text);
+}, false);
+
+function download(file, text) {
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8, ' + encodeURIComponent(text));
+    element.setAttribute('download', file);
+    document.body.appendChild(element);
+    //onClick property
+    element.click();
+    document.body.removeChild(element);
+}
+
+
+
+
+
+</script>
+<!--voice recorder script-->
+<script>
+       var startRecordingButton = document.getElementById("startRecordingButton");
+        var stopRecordingButton = document.getElementById("stopRecordingButton");
+        var playButton = document.getElementById("playButton");
+        var downloadButton = document.getElementById("downloadButton");
+
+
+        var leftchannel = [];
+        var rightchannel = [];
+        var recorder = null;
+        var recordingLength = 0;
+        var volume = null;
+        var mediaStream = null;
+        var sampleRate = 44100;
+        var context = null;
+        var blob = null;
+
+        startRecordingButton.addEventListener("click", function () {
+            // Initialize recorder
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+            navigator.getUserMedia(
+            {
+                audio: true
+            },
+            function (e) {
+                console.log("user consent");
+
+                // creates the audio context
+                window.AudioContext = window.AudioContext || window.webkitAudioContext;
+                context = new AudioContext();
+
+                // creates an audio node from the microphone incoming stream
+                mediaStream = context.createMediaStreamSource(e);
+
+                // https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createScriptProcessor
+                // bufferSize: the onaudioprocess event is called when the buffer is full
+                var bufferSize = 2048;
+                var numberOfInputChannels = 2;
+                var numberOfOutputChannels = 2;
+                if (context.createScriptProcessor) {
+                    recorder = context.createScriptProcessor(bufferSize, numberOfInputChannels, numberOfOutputChannels);
+                } else {
+                    recorder = context.createJavaScriptNode(bufferSize, numberOfInputChannels, numberOfOutputChannels);
+                }
+
+                recorder.onaudioprocess = function (e) {
+                    leftchannel.push(new Float32Array(e.inputBuffer.getChannelData(0)));
+                    rightchannel.push(new Float32Array(e.inputBuffer.getChannelData(1)));
+                    recordingLength += bufferSize;
+                }
+
+                // we connect the recorder
+                mediaStream.connect(recorder);
+                recorder.connect(context.destination);
+            },
+                        function (e) {
+                            console.error(e);
+                        });
+        });
+
+        stopRecordingButton.addEventListener("click", function () {
+
+            // stop recording
+            recorder.disconnect(context.destination);
+            mediaStream.disconnect(recorder);
+
+            // we flat the left and right channels down
+            // Float32Array[] => Float32Array
+            var leftBuffer = flattenArray(leftchannel, recordingLength);
+            var rightBuffer = flattenArray(rightchannel, recordingLength);
+            // we interleave both channels together
+            // [left[0],right[0],left[1],right[1],...]
+            var interleaved = interleave(leftBuffer, rightBuffer);
+
+            // we create our wav file
+            var buffer = new ArrayBuffer(44 + interleaved.length * 2);
+            var view = new DataView(buffer);
+
+            // RIFF chunk descriptor
+            writeUTFBytes(view, 0, 'RIFF');
+            view.setUint32(4, 44 + interleaved.length * 2, true);
+            writeUTFBytes(view, 8, 'WAVE');
+            // FMT sub-chunk
+            writeUTFBytes(view, 12, 'fmt ');
+            view.setUint32(16, 16, true); // chunkSize
+            view.setUint16(20, 1, true); // wFormatTag
+            view.setUint16(22, 2, true); // wChannels: stereo (2 channels)
+            view.setUint32(24, sampleRate, true); // dwSamplesPerSec
+            view.setUint32(28, sampleRate * 4, true); // dwAvgBytesPerSec
+            view.setUint16(32, 4, true); // wBlockAlign
+            view.setUint16(34, 16, true); // wBitsPerSample
+            // data sub-chunk
+            writeUTFBytes(view, 36, 'data');
+            view.setUint32(40, interleaved.length * 2, true);
+
+            // write the PCM samples
+            var index = 44;
+            var volume = 1;
+            for (var i = 0; i < interleaved.length; i++) {
+                view.setInt16(index, interleaved[i] * (0x7FFF * volume), true);
+                index += 2;
+            }
+
+            // our final blob
+            blob = new Blob([view], { type: 'audio/wav' });
+        });
+
+        playButton.addEventListener("click", function () {
+            if (blob == null) {
+                return;
+            }
+
+            var url = window.URL.createObjectURL(blob);
+            var audio = new Audio(url);
+            audio.play();
+        });
+
+        downloadButton.addEventListener("click", function () {
+            if (blob == null) {
+                return;
+            }
+
+            var url = URL.createObjectURL(blob);
+
+            var a = document.createElement("a");
+            document.body.appendChild(a);
+            a.style = "display: none";
+            a.href = url;
+            a.download = "sample.wav";
+            a.click();
+            window.URL.revokeObjectURL(url);
+        });
+
+        function flattenArray(channelBuffer, recordingLength) {
+            var result = new Float32Array(recordingLength);
+            var offset = 0;
+            for (var i = 0; i < channelBuffer.length; i++) {
+                var buffer = channelBuffer[i];
+                result.set(buffer, offset);
+                offset += buffer.length;
+            }
+            return result;
+        }
+
+        function interleave(leftChannel, rightChannel) {
+            var length = leftChannel.length + rightChannel.length;
+            var result = new Float32Array(length);
+
+            var inputIndex = 0;
+
+            for (var index = 0; index < length;) {
+                result[index++] = leftChannel[inputIndex];
+                result[index++] = rightChannel[inputIndex];
+                inputIndex++;
+            }
+            return result;
+        }
+
+        function writeUTFBytes(view, offset, string) {
+            for (var i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+
+
+
+
+
+
+</script>
+
+
+</body>
+
+
+</html>
+
+{% endblock %}
+
+
+
